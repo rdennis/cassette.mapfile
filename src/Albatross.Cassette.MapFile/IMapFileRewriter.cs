@@ -1,6 +1,6 @@
 using Cassette;
 
-namespace Albatross.Cassette.TypeScript
+namespace Albatross.Cassette.MapFile
 {
     public interface IMapFileRewriter : ICompiler
     {

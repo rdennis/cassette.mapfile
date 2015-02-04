@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albatross.Cassette.TypeScript.Test", "albatross.cassette.typescript.test\Albatross.Cassette.TypeScript.Test.csproj", "{5E516358-31F8-4222-BF9D-A26D9E1D3F42}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2E2CA6DF-5A78-4340-AE94-125ACE81961B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albatross.Cassette.TypeScript.Test.Web", "Albatross.Cassette.TypeScript.Test.Web\Albatross.Cassette.TypeScript.Test.Web.csproj", "{8CFD2FCA-3F12-441C-9C8F-3FA1BDC25A79}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albatross.Cassette.MapFile", "Albatross.Cassette.MapFile\Albatross.Cassette.MapFile.csproj", "{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albatross.Cassette.TypeScript", "Albatross.Cassette.TypeScript\Albatross.Cassette.TypeScript.csproj", "{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albatross.Cassette.MapFile.Test", "Albatross.Cassette.MapFile.Test\Albatross.Cassette.MapFile.Test.csproj", "{5E516358-31F8-4222-BF9D-A26D9E1D3F42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albatross.Cassette.MapFile.Test.Web", "Albatross.Cassette.MapFile.Test.Web\Albatross.Cassette.MapFile.Test.Web.csproj", "{8CFD2FCA-3F12-441C-9C8F-3FA1BDC25A79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +17,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E516358-31F8-4222-BF9D-A26D9E1D3F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5E516358-31F8-4222-BF9D-A26D9E1D3F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E516358-31F8-4222-BF9D-A26D9E1D3F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,10 +29,6 @@ Global
 		{8CFD2FCA-3F12-441C-9C8F-3FA1BDC25A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CFD2FCA-3F12-441C-9C8F-3FA1BDC25A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CFD2FCA-3F12-441C-9C8F-3FA1BDC25A79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DF7C7BD-66AB-44AE-8199-FFB14BAEC160}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

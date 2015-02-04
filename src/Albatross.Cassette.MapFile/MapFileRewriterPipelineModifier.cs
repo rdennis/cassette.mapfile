@@ -1,7 +1,7 @@
 using Cassette.BundleProcessing;
 using Cassette.Scripts;
 
-namespace Albatross.Cassette.TypeScript
+namespace Albatross.Cassette.MapFile
 {
     public class MapFileRewriterPipelineModifier : IBundlePipelineModifier<ScriptBundle>
     {

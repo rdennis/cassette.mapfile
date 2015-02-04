@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 
-namespace Albatross.Cassette.TypeScript.Test.Web.Controllers
+namespace Albatross.Cassette.MapFile.Test.Web.Controllers
 {
     public class HomeController : Controller
     {

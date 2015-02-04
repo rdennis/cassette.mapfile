@@ -2,7 +2,7 @@ using Cassette;
 using Cassette.Scripts;
 using Cassette.Stylesheets;
 
-namespace Albatross.Cassette.TypeScript.Test.Web
+namespace Albatross.Cassette.MapFile.Test.Web
 {
     /// <summary>
     /// Configures the Cassette asset bundles for the web application.

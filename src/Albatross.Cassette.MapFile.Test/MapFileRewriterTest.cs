@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Linq;
+using Albatross.Cassette.MapFile;
 using Cassette;
 using Cassette.IO;
 using Moq;
 using Xbehave;
 using Xunit.Should;
 
-namespace Albatross.Cassette.TypeScript.Test
+namespace Albatross.Cassette.MapFile.Test
 {
     public class MapFileRewriterTest
     {
         [Scenario]
-        [Example("some-file.js.map", "~/content/some-file.js", "http://test-site.com", "http://test-site.com/content/some-file.js.map")]
-        public void CompileRewritesRelativePath(string mapfileName, string relativePath, string virtualDirectory, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, Mock<IRelativePathResolver> pathResolver, CompileContext compileContext, string code, CompileResult result, MapFileRewriter rewriter)
+        [Example("some-file.js.map", "~/content/some-file.js", "http://test-site.com", "../../content/some-file.js.map")]
+        public void CompileRewritesRelativePath(string mapfileName, string relativePath, string host, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, CompileContext compileContext, string code, CompileResult result, MapFileRewriter rewriter)
         {
             "Given some code with a mapFile reference {0}".
             f(() => {
@@ -35,10 +36,7 @@ $(document).ready(function($) {
 
             "And given a MapFileRewriter with a virtual directory {2}".
             f(() => {
-                pathResolver = new Mock<IRelativePathResolver>();
-                pathResolver.Setup(o => o.ToAbsolute(It.IsAny<string>())).Returns(virtualDirectory);
-
-                rewriter = new MapFileRewriter(pathResolver.Object);
+                rewriter = new MapFileRewriter();
             });
 
             "And given a compile context".

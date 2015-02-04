@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Albatross.Cassette.TypeScript.Test.Web
+namespace Albatross.Cassette.MapFile.Test.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {

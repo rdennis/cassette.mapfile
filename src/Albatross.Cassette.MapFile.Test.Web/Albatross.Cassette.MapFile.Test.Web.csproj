@@ -12,11 +12,11 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Albatross.Cassette.TypeScript.Test.Web</RootNamespace>
-    <AssemblyName>Albatross.Cassette.TypeScript.Test.Web</AssemblyName>
+    <RootNamespace>Albatross.Cassette.MapFile.Test.Web</RootNamespace>
+    <AssemblyName>Albatross.Cassette.MapFile.Test.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -164,9 +164,9 @@
     <TypeScriptCompile Include="Scripts\Tester.ts" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Albatross.Cassette.TypeScript\Albatross.Cassette.TypeScript.csproj">
+    <ProjectReference Include="..\Albatross.Cassette.MapFile\Albatross.Cassette.MapFile.csproj">
       <Project>{7df7c7bd-66ab-44ae-8199-ffb14baec160}</Project>
-      <Name>Albatross.Cassette.TypeScript</Name>
+      <Name>Albatross.Cassette.MapFile</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
@@ -188,7 +188,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54477</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Albatross.Cassette.TypeScript.Test.Web</IISUrl>
+          <IISUrl>http://localhost:54477/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
