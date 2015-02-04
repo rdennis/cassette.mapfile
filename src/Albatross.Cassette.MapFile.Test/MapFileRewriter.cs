@@ -4,17 +4,17 @@ using Cassette;
 using Cassette.IO;
 using Moq;
 using Xbehave;
-using Xunit.Should;
+using Shouldly;
 
 namespace Albatross.Cassette.MapFile.Test
 {
-    public class MapFileRewriterTest
+    public class MapFileRewriter
     {
         [Scenario]
         [Example("some-file.js.map", "~/content/scripts/some-file.js", "http://test-site.com", "../../../../content/scripts/some-file.js.map")]
         [Example("some-file.js.map", "~/content/some-file.js", "http://test-site.com", "../../../content/some-file.js.map")]
         [Example("some-file.js.map", "~/some-file.js", "http://test-site.com", "../../some-file.js.map")]
-        public void CompileRewritesRelativePath(string mapfileName, string relativePath, string host, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, CompileContext compileContext, string code, CompileResult result, MapFileRewriter rewriter)
+        public void CompileRewritesRelativePath(string mapfileName, string relativePath, string host, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, CompileContext compileContext, string code, CompileResult result, CassetteSettings settings, MapFile.MapFileRewriter rewriter)
         {
             "Given some code with a mapFile reference {0}".
             f(() => {
@@ -37,7 +37,8 @@ $(document).ready(function($) {
 
             "And given a MapFileRewriter with a virtual directory {2}".
             f(() => {
-                rewriter = new MapFileRewriter();
+                settings = new CassetteSettings(Enumerable.Empty<IConfiguration<CassetteSettings>>());
+                rewriter = new MapFile.MapFileRewriter(settings);
             });
 
             "And given a compile context".
