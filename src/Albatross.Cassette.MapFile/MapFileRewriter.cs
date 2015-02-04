@@ -8,9 +8,7 @@ namespace Albatross.Cassette.MapFile
 {
     public class MapFileRewriter : IMapFileRewriter
     {
-        private static readonly Regex directoryReplacement = new Regex(@"([^/\\]+[/\\])");
-
-        private static readonly Regex mapFileReplacement = new Regex(@"^(\s*//# sourceMappingURL=)(.+\.map)\s*$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        private static readonly Regex sourceMapReplacement = new Regex(@"^(\s*//# sourceMappingURL=)(.+\.map)\s*$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         private readonly CassetteSettings settings;
 
@@ -21,23 +19,35 @@ namespace Albatross.Cassette.MapFile
 
         public CompileResult Compile(string source, CompileContext context)
         {
-            if(this.settings != null && this.settings.IsDebuggingEnabled)
+            if(this.settings != null && !this.settings.IsDebuggingEnabled)
             {
                 return new CompileResult(source, Enumerable.Empty<string>());
             }
 
-            string sourcePath = context.SourceFilePath;
-            string bundleEscape = directoryReplacement
-                                                      .Replace(string.Format("cassettePlaceholder/{0}", sourcePath), "../")
-                                                      .Replace(Path.GetFileName(sourcePath), String.Empty);
-
-            string bundleRelativeDirectory = sourcePath
-                                                       .Replace("~/", bundleEscape)
-                                                       .Replace(Path.GetFileName(sourcePath), String.Empty);
-
-            string result = mapFileReplacement.Replace(source, String.Format("$1{0}$2", bundleRelativeDirectory));
+            var relativePath = this.GetRawDirectoryRelativePath(context.SourceFilePath);
+            var result = sourceMapReplacement.Replace(source, String.Format("$1{0}$2", relativePath));
 
             return new CompileResult(result, Enumerable.Empty<string>());
+        }
+
+        private string GetRawDirectoryRelativePath(string sourcePath)
+        {
+            sourcePath = sourcePath
+                                   .Replace('\\', '/')
+                                   .Replace("~/", "../");
+
+            if(sourcePath[0] == '/')
+            {
+                sourcePath = sourcePath.Substring(1);
+            }
+
+            for(var depth = sourcePath.Count(c => c == '/'); depth > 0; depth--)
+            {
+                sourcePath = sourcePath.Insert(0, "../");
+            }
+
+            var directoryPath = Path.GetDirectoryName(sourcePath).Replace('\\', '/');
+            return string.Format("../file/{0}/", directoryPath); // make RawFileRequestRewriter see this as a raw file
         }
     }
 }
