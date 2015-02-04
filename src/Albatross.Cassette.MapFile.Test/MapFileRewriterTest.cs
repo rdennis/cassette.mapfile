@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Albatross.Cassette.MapFile;
 using Cassette;
 using Cassette.IO;
 using Moq;
@@ -12,7 +11,9 @@ namespace Albatross.Cassette.MapFile.Test
     public class MapFileRewriterTest
     {
         [Scenario]
-        [Example("some-file.js.map", "~/content/some-file.js", "http://test-site.com", "../../content/some-file.js.map")]
+        [Example("some-file.js.map", "~/content/scripts/some-file.js", "http://test-site.com", "../../../../content/scripts/some-file.js.map")]
+        [Example("some-file.js.map", "~/content/some-file.js", "http://test-site.com", "../../../content/some-file.js.map")]
+        [Example("some-file.js.map", "~/some-file.js", "http://test-site.com", "../../some-file.js.map")]
         public void CompileRewritesRelativePath(string mapfileName, string relativePath, string host, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, CompileContext compileContext, string code, CompileResult result, MapFileRewriter rewriter)
         {
             "Given some code with a mapFile reference {0}".
