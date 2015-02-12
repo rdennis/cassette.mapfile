@@ -11,7 +11,7 @@
    <description>$description$</description>
    <releaseNotes>Initial release.</releaseNotes>
    <dependencies>
-      <dependency id="Cassette" />
+      <dependency id="Cassette" version="2.4.2"/>
    </dependencies>
    <copyright>Copyright 2015</copyright>
    <tags>Cassette web MapFile</tags>

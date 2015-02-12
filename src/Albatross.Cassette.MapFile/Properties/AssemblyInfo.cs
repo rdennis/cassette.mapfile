@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Cassette.MapFile")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Rewrites sourceMapUrls to accomodate Cassette bundling.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("rdennis")]
 [assembly: AssemblyProduct("Albatross.Cassette.MapFile")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
