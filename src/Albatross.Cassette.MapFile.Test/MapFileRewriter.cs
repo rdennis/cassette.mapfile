@@ -11,10 +11,10 @@ namespace Albatross.Cassette.MapFile.Test
     public class MapFileRewriter
     {
         [Scenario]
-        [Example("some-file.js.map", "~/content/scripts/some-file.js", "http://test-site.com", "../../../../content/scripts/some-file.js.map")]
-        [Example("some-file.js.map", "~/content/some-file.js", "http://test-site.com", "../../../content/some-file.js.map")]
-        [Example("some-file.js.map", "~/some-file.js", "http://test-site.com", "../../some-file.js.map")]
-        public void CompileRewritesRelativePath(string mapfileName, string relativePath, string host, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, CompileContext compileContext, string code, CompileResult result, CassetteSettings settings, MapFile.MapFileRewriter rewriter)
+        [Example("some-file.js.map", "~/content/scripts/some-file.js", "../file/../../../../content/scripts/some-file.js.map")]
+        [Example("some-file.js.map", "~/content/some-file.js", "../file/../../../content/some-file.js.map")]
+        [Example("some-file.js.map", "~/some-file.js", "../file/../../some-file.js.map")]
+        public void CompileRewritesRelativePath(string mapfileName, string relativePath, string expectedUrl, Mock<IFile> file, Mock<IDirectory> directory, CompileContext compileContext, string code, CompileResult result, CassetteSettings settings, MapFile.MapFileRewriter rewriter)
         {
             "Given some code with a mapFile reference {0}".
             f(() => {
@@ -37,7 +37,10 @@ $(document).ready(function($) {
 
             "And given a MapFileRewriter with a virtual directory {2}".
             f(() => {
-                settings = new CassetteSettings(Enumerable.Empty<IConfiguration<CassetteSettings>>());
+               settings = new CassetteSettings(Enumerable.Empty<IConfiguration<CassetteSettings>>())
+               {
+                  IsDebuggingEnabled = true
+               };
                 rewriter = new MapFile.MapFileRewriter(settings);
             });
 
