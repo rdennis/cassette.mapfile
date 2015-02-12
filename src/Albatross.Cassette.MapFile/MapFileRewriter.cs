@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,25 +6,48 @@ using Cassette;
 
 namespace Albatross.Cassette.MapFile
 {
-   public class MapFileRewriter : IMapFileRewriter
-   {
-      public static readonly Regex MapFileReplacement = new Regex(@"^(\s*//# sourceMappingURL=)(.+\.map)\s*$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
-      public static readonly Regex DirectoryReplacement = new Regex(@"([^/\\]+[/\\])");
+    public class MapFileRewriter : IMapFileRewriter
+    {
+        private static readonly Regex sourceMapReplacement = new Regex(@"^(\s*//# sourceMappingURL=)(.+\.map)\s*$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
-      public CompileResult Compile(string source, CompileContext context)
-      {
-         string sourcePath = context.SourceFilePath;
-         string bundleEscape = DirectoryReplacement
-                                                   .Replace(string.Format("cassettePlaceholder/{0}", sourcePath), "../")
-                                                   .Replace(Path.GetFileName(sourcePath), String.Empty);
+        private readonly CassetteSettings settings;
 
-         string bundleRelativeDirectory = sourcePath
-                                                    .Replace("~/", bundleEscape)
-                                                    .Replace(Path.GetFileName(sourcePath), String.Empty);
+        public MapFileRewriter(CassetteSettings settings)
+        {
+            this.settings = settings;
+        }
 
-         string result = MapFileReplacement.Replace(source, String.Format("$1{0}$2", bundleRelativeDirectory));
+        public CompileResult Compile(string source, CompileContext context)
+        {
+            if(this.settings != null && !this.settings.IsDebuggingEnabled)
+            {
+                return new CompileResult(source, Enumerable.Empty<string>());
+            }
 
-         return new CompileResult(result, new List<string>());
-      }
-   }
+            var relativePath = this.GetRawDirectoryRelativePath(context.SourceFilePath);
+            var result = sourceMapReplacement.Replace(source, String.Format("$1{0}$2", relativePath));
+
+            return new CompileResult(result, Enumerable.Empty<string>());
+        }
+
+        private string GetRawDirectoryRelativePath(string sourcePath)
+        {
+            sourcePath = sourcePath
+                                   .Replace('\\', '/')
+                                   .Replace("~/", "../");
+
+            if(sourcePath[0] == '/')
+            {
+                sourcePath = sourcePath.Substring(1);
+            }
+
+            for(var depth = sourcePath.Count(c => c == '/'); depth > 0; depth--)
+            {
+                sourcePath = sourcePath.Insert(0, "../");
+            }
+
+            var directoryPath = Path.GetDirectoryName(sourcePath).Replace('\\', '/');
+            return string.Format("../file/{0}/", directoryPath); // make RawFileRequestRewriter see this as a raw file
+        }
+    }
 }
