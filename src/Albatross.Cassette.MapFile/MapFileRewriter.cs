@@ -8,7 +8,7 @@ namespace Albatross.Cassette.MapFile
 {
     public class MapFileRewriter : IMapFileRewriter
     {
-        private static readonly Regex sourceMapReplacement = new Regex(@"^(/[/|\*]# sourceMappingURL=)(.+\.map)\s*( \*/)?$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        private static readonly Regex sourceMapReplacement = new Regex(@"^(/[/|\*]# sourceMappingURL=)(.+\.map)\s*?(\*/)?\r?$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         private readonly CassetteSettings settings;
 
