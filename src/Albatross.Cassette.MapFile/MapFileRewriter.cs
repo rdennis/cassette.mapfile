@@ -8,7 +8,7 @@ namespace Albatross.Cassette.MapFile
 {
     public class MapFileRewriter : IMapFileRewriter
     {
-        private static readonly Regex sourceMapReplacement = new Regex(@"^(\s*//# sourceMappingURL=)(.+\.map)\s*$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        private static readonly Regex sourceMapReplacement = new Regex(@"^(/[/|\*]# sourceMappingURL=)(.+\.map)\s*?(\*/)?\r?$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
 
         private readonly CassetteSettings settings;
 
@@ -25,7 +25,7 @@ namespace Albatross.Cassette.MapFile
             }
 
             var relativePath = this.GetRawDirectoryRelativePath(context.SourceFilePath);
-            var result = sourceMapReplacement.Replace(source, String.Format("$1{0}$2", relativePath));
+            var result = sourceMapReplacement.Replace(source, String.Format("$1{0}$2$3", relativePath));
 
             return new CompileResult(result, Enumerable.Empty<string>());
         }

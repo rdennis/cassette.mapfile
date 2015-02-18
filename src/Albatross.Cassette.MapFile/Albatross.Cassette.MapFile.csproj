@@ -53,8 +53,10 @@
     <Compile Include="IMapFileRewriter.cs" />
     <Compile Include="MapFileRewriter.cs" />
     <Compile Include="MapFileRewriterConfigurer.cs" />
+    <Compile Include="CSSMapFileRewriterPipelineModifier.cs" />
     <Compile Include="MapFileRewriterPipelineModifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CSSRewriteMapFile.cs" />
     <Compile Include="RewriteMapFile.cs" />
   </ItemGroup>
   <ItemGroup>
