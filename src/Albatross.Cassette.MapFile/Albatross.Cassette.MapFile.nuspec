@@ -9,7 +9,7 @@
    <projectUrl>https://github.com/rdennis/cassette.mapfile</projectUrl>
    <requireLicenseAcceptance>false</requireLicenseAcceptance>
    <description>$description$</description>
-   <releaseNotes>Initial release.</releaseNotes>
+   <releaseNotes>Add CSS support.</releaseNotes>
    <dependencies>
       <dependency id="Cassette" version="2.4.2"/>
    </dependencies>

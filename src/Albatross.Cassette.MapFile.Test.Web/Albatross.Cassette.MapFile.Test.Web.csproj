@@ -139,6 +139,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Test.css">
+      <DependentUpon>Test.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Test.min.css">
+      <DependentUpon>Test.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -161,6 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Content\Test.less" />
+    <Content Include="Content\Test.css.map">
+      <DependentUpon>Test.css</DependentUpon>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
